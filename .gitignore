@@ -1,0 +1,6 @@
+.tox
+*.sublime-project
+*.sublime-workspace
+*.egg-info
+*__pycache__*
+*.pyc
