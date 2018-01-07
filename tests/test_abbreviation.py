@@ -8,4 +8,3 @@ def test_abbreviation():
                                              'pointConstraint': ['PO']})
     result = abb.abbreviate(data, length=2)
     print(len(result))
-    print(result['polyCube'], result['pointConstraint'])
