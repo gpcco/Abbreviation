@@ -50,10 +50,10 @@ class Abbreviation(object):
         self._output = output
     # end def __init__
 
-    def abbreviate(self, data, casemode=UPPERCASE, length=3):
+    def abbreviate(self, word, casemode=UPPERCASE, length=3):
         """Call abbreviation algorithm and return data.
 
-        @param data <list> List data of string elements
+        @param word <str> string element
         @param casemode <const> casemode UPPERCASE: return uppercase letters
                                 casemode LOWERCASE: return lowercase letters
                                 casemode CAPITALIZE: return capitalized letters
@@ -61,12 +61,26 @@ class Abbreviation(object):
         """
         self._casemode = casemode
         self._length = length
-        result = self._iterate_data(data)
+        result = self._iterate_data(word)
         if self._output == 'list':
             result = [[key, value] for key, value in result.items()]
-        # end if convert dict to list
         return result
-    # end def abbreviate
+
+    def abbreviate_multiple(self, words, casemode=UPPERCASE, length=3):
+        """Call abbreviation algorithm and return data.
+
+        @param words <list> List of string elements
+        @param casemode <const> casemode UPPERCASE: return uppercase letters
+                                casemode LOWERCASE: return lowercase letters
+                                casemode CAPITALIZE: return capitalized letters
+        @param length <int> Length of the abbreviated letters, minimum is 2
+        """
+        self._casemode = casemode
+        self._length = length
+        result = self._iterate_data(words)
+        if self._output == 'list':
+            result = [[key, value] for key, value in result.items()]
+        return result
 
     def _iterate_data(self, data, result=dict()):
         """Iterate the data list.
@@ -415,3 +429,7 @@ class Abbreviation(object):
         # end if iterate letters
     # end def _iterate_abbreviation
 # end class Abbreviation
+
+
+abbreviate = Abbreviation().abbreviate
+abbreviate_multiple = Abbreviation().abbreviate_multiple
